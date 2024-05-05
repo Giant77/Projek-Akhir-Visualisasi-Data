@@ -31,8 +31,6 @@ d3.csv("./data/nutrition.csv").then((data) => {
         carbohydrate: "gr",
     };
 
-    console.log(scale);
-
     // add the options to the button
     d3.select("#select-scatter-plot")
         .selectAll("myOptions")
