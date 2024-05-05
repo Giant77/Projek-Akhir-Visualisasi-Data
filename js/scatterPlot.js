@@ -24,6 +24,15 @@ d3.csv("./data/nutrition.csv").then((data) => {
         "Carbohydrate X Fat",
     ];
 
+    const scale = {
+        calories: "cal",
+        proteins: "gr",
+        fat: "gr",
+        carbohydrate: "gr",
+    };
+
+    console.log(scale);
+
     // add the options to the button
     d3.select("#select-scatter-plot")
         .selectAll("myOptions")
@@ -44,7 +53,7 @@ d3.csv("./data/nutrition.csv").then((data) => {
     // Add Y axis
     const y = d3
         .scaleLinear()
-        .domain([0, d3.max(data, (d) => +d.proteins + 50)])
+        .domain([0, d3.max(data, (d) => +d.proteins + 10)])
         .range([height, 0]);
     svg.append("g").call(d3.axisLeft(y)).attr("class", "y-axis");
 
@@ -65,14 +74,14 @@ d3.csv("./data/nutrition.csv").then((data) => {
         .style("fill", "#69b3a2");
 
     // new X axis
-    x.domain([0, d3.max(data, (d) => +d.calories + 50)]);
+    x.domain([0, d3.max(data, (d) => +d.calories + 10)]);
     svg.select(".x-axis")
         .transition()
         .duration(2000)
         .attr("opacity", "1")
         .call(d3.axisBottom(x));
 
-    // animation for dotss
+    // animation for dots
     svg.selectAll("circle")
         .transition()
         .delay(function (d, i) {
@@ -105,6 +114,22 @@ d3.csv("./data/nutrition.csv").then((data) => {
         .attr("y", -margin.left + 28) // Adjust this value for position
         .text("Proteins");
 
+    var xScale = svg
+        .append("text")
+        .attr("class", "plot-title")
+        .attr("text-anchor", "middle")
+        .attr("x", width + 10)
+        .attr("y", height + 30)
+        .text("cal");
+
+    var yScale = svg
+        .append("text")
+        .attr("class", "plot-title")
+        .attr("text-anchor", "middle")
+        .attr("x", -43)
+        .attr("y", 10)
+        .text("gr");
+
     // When the button is changed, run the function
     d3.select("#select-scatter-plot").on("change", function (event, d) {
         // recover the option that has been chosen
@@ -113,7 +138,7 @@ d3.csv("./data/nutrition.csv").then((data) => {
         // run the updateChart function with this selected option
         update(selectedOption);
     });
-    
+
     // func to update the scatter plot
     function update(selectedOption) {
         const option = selectedOption.split(" x "); // split the option into the column used
@@ -124,8 +149,8 @@ d3.csv("./data/nutrition.csv").then((data) => {
         });
 
         // update the domain
-        y.domain([0, d3.max(data, (d) => +d[option[0]] + 50)]);
-        x.domain([0, d3.max(data, (d) => +d[option[1]] + 50)]);
+        y.domain([0, d3.max(data, (d) => +d[option[0]] + 10)]);
+        x.domain([0, d3.max(data, (d) => +d[option[1]] + 10)]);
 
         // update the axis
         svg.select(".y-axis").transition().duration(1000).call(d3.axisLeft(y));
@@ -145,5 +170,9 @@ d3.csv("./data/nutrition.csv").then((data) => {
         // update label on x and y axis
         yLabel.text(option[0]);
         xLabel.text(option[1]);
+
+        // update scale on x and y axis
+        yScale.text(scale[option[0]]);
+        xScale.text(scale[option[1]]);
     }
 });
