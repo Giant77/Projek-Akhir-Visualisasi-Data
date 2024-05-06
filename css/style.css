@@ -1,6 +1,4 @@
 h1 {
-    /* color: lightgray; */
-    opacity: 0.95;
     text-align: center;
     padding: 30px;
     font-size: 35px;
@@ -11,6 +9,7 @@ h2#scatter-title {
     text-align: center;
     padding-top: 15px;
     font-size: 25px;
+    margin-bottom: 30px;
 }
 
 h2#pie-title {
@@ -18,7 +17,7 @@ h2#pie-title {
     text-align: center;
     padding-top: 15px;
     font-size: 25px;
-    margin-bottom: -10px;
+    margin-bottom: -60px;
 }
 
 .header {
@@ -33,14 +32,19 @@ h2#pie-title {
 }
 
 .scatter-container {
-    /* border: 1px solid lightslategray; */
     border-radius: 5%;
-    /* background-color: gray; */
-    opacity: 0.8;
     background-position: contain;
     margin-bottom: 20px;
     display: block;
     width: fit-content;
     margin: auto;
     margin-bottom: 5px;
+}
+
+#select-scatter-plot {
+    margin-bottom: 15px;
+    margin-top: 20px;
+    padding: 3px;
+    display: flex;
+    justify-content: end;
 }
