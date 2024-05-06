@@ -6,13 +6,19 @@ h1 {
     font-size: 35px;
 }
 
-h2#bar-title {
+h2#scatter-title {
     color: #0e0b16;
-    opacity: 0.95;
     text-align: center;
     padding-top: 15px;
     font-size: 25px;
-    margin-bottom: -20px;
+}
+
+h2#pie-title {
+    color: #0e0b16;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 25px;
+    margin-bottom: -10px;
 }
 
 .header {
