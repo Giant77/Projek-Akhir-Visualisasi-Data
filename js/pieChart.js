@@ -125,7 +125,6 @@ d3.csv('../data/nutrition.csv').then(function (data) {
                 <div>
                     <strong>Kategori:</strong> ${Object.keys(counts)[d.index]}<br>
                     <strong>Jumlah:</strong> ${Object.values(counts)[d.index]}<br>
-                    <strong>Persentase:</strong> ${percentages[Object.keys(counts)[d.index]].toFixed(2)}%
                 </div>
             `;
 
