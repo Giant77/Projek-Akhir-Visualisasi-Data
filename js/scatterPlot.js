@@ -1,3 +1,52 @@
+// Define a function to calculate correlation line
+function calculateCorrelationLine(data, xAttr, yAttr) {
+    const xMean = d3.mean(data, (d) => +d[xAttr]);
+    const yMean = d3.mean(data, (d) => +d[yAttr]);
+    const numerator = data.reduce(
+        (acc, d) => acc + (+d[xAttr] - xMean) * (+d[yAttr] - yMean),
+        0
+    );
+    const denominator = data.reduce(
+        (acc, d) => acc + (+d[xAttr] - xMean) ** 2,
+        0
+    );
+    const slope = numerator / denominator;
+    const intercept = yMean - slope * xMean;
+    return { slope, intercept };
+}
+
+// Define a function to draw correlation line
+function drawCorrelationLine(data, xScale, yScale, xAttr, yAttr) {
+    const correlationLine = calculateCorrelationLine(data, xAttr, yAttr);
+
+    const line = d3
+        .line()
+        .x((d) => xScale(d))
+        .y((d) =>
+            yScale(correlationLine.slope * d + correlationLine.intercept)
+        );
+
+    const correlationPath = svg.selectAll(".correlation-line").data([data]);
+
+    correlationPath
+        .enter()
+        .append("path")
+        .attr("class", "correlation-line")
+        .attr("stroke", "red")
+        .attr("stroke-width", 2)
+        .attr("fill", "none")
+        .merge(correlationPath)
+        .transition()
+        .duration(1000)
+        .attr(
+            "d",
+            line([
+                d3.min(data, (d) => +d[xAttr]),
+                d3.max(data, (d) => +d[xAttr]),
+            ])
+        );
+}
+
 // set the dimensions and margins of the graph
 const margin = { top: 10, right: 30, bottom: 60, left: 60 },
     width = window.innerWidth / 2 - margin.left - margin.right,
@@ -94,14 +143,17 @@ d3.csv("./data/nutrition.csv").then((data) => {
                 return y(d.proteins);
             });
 
-        // Add X axis label
-        var xLabel = svg
-            .append("text")
-            .attr("class", "x-axis-label")
-            .attr("text-anchor", "middle")
-            .attr("x", width / 2)
-            .attr("y", height + margin.top + 25) // Adjust this value for position
-            .text("Calories");
+    // corelation lines
+    drawCorrelationLine(data, x, y, "calories", "proteins");
+
+    // Add X axis label
+    var xLabel = svg
+        .append("text")
+        .attr("class", "x-axis-label")
+        .attr("text-anchor", "middle")
+        .attr("x", width / 2)
+        .attr("y", height + margin.top + 25) // Adjust this value for position
+        .text("Calories");
 
         // Add Y axis label
         var yLabel = svg
@@ -173,6 +225,9 @@ d3.csv("./data/nutrition.csv").then((data) => {
             // update scale on x and y axis
             yScale.text(scale[option[0]]);
             xScale.text(scale[option[1]]);
+
+        // Draw correlation line
+        drawCorrelationLine(data, x, y, option[1], option[0]);
         }
     } catch (error) {
         console.error('Error occurred while processing data:', error);
