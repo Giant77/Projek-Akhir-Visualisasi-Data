@@ -5,12 +5,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Visualisasi Nutrisi</title>
 
-        <link rel="stylesheet" href="../css/style.css">
-
-        <script type="text/javascript" src="../js/d3.v7.min.js"></script>
-        <script type="text/javascript" src="../js/main.js"></script>
+        <link rel="stylesheet" href="../css/style.css" />
     </head>
     <body>
-        <p>lorem ipsum</p>
+        <div class="header">
+            <h1>Indonesian Food Nutritions</h1>
+        </div>
+
+        <div class="svg-container">
+            <div class="scatter-container">
+                <h2 class="scatter-title">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                </h2>
+
+                <select id="select-scatter-plot"></select>
+                <div id="scatter-plot"></div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="./js/d3.v7.min.js"></script>
+        <script type="text/javascript" src="./js/scatterPlot.js"></script>
     </body>
 </html>
