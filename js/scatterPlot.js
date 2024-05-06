@@ -69,7 +69,7 @@ d3.csv("./data/nutrition.csv").then((data) => {
             return y(d.proteins);
         })
         .attr("r", 1.5)
-        .style("fill", "#69b3a2");
+        .style("fill", "#1f77b4");
 
     // new X axis
     x.domain([0, d3.max(data, (d) => +d.calories + 10)]);
