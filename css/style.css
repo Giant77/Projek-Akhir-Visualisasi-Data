@@ -1,0 +1,40 @@
+h1 {
+    /* color: lightgray; */
+    opacity: 0.95;
+    text-align: center;
+    padding: 30px;
+    font-size: 35px;
+}
+
+h2#bar-title {
+    color: #0e0b16;
+    opacity: 0.95;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 25px;
+    margin-bottom: -20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.svg-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.scatter-container {
+    /* border: 1px solid lightslategray; */
+    border-radius: 5%;
+    /* background-color: gray; */
+    opacity: 0.8;
+    background-position: contain;
+    margin-bottom: 20px;
+    display: block;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 5px;
+}
