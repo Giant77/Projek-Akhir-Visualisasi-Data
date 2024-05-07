@@ -16,23 +16,54 @@
         <h1>Kandungan Nutrisi Makanan dan Minuman Khas Indonesia Per 100 Gram Takaran Saji</h1>
     </div>
 
-      <div class="svg-container">
+    <div class="svg-container">
+        <h2 id="scatter-title">
+            Analisis Korelasi Berbagai Nutrisi
+        </h2>
         <div class="scatter-container">
-            <h2 id="scatter-title">
-                Analisis Korelasi Berbagai Nutrisi
-            </h2>
+            <div class="description">
+                <p>Gambar di samping adalah visualisasi scatterplot yang menggambarkan korelasi antara dua atribut
+                    nutrisi dalam makanan dan minuman di Indonesia. Meskipun terdapat korelasi positif, namun tidak
+                    begitu signifikan. Lebih lanjut, beberapa visualisasi antara atribut lain yang dapat dipilih pada
+                    kolom dropdown menunjukkan keterkaitan yang bahkan lebih rendah dibandingkan dengan visualisasi
+                    tersebut. Hal ini mengindikasikan bahwa nutrisi dalam menu makanan dan minuman di Indonesia memiliki
+                    keterkaitan yang cenderung rendah per 100 gram takaran saji dari menu yang diuji.</p>
+            </div>
+            <div>
+                <select id="select-scatter-plot"></select>
+                <div id="scatter-plot"></div>
+            </div>
 
-            <select id="select-scatter-plot"></select>
-            <div id="scatter-plot"></div>
         </div>
+        <h2 id="pie-title">
+            Komposisi Nutrisi dalam Berbagai Jenis Makanan
+        </h2>
         <div class="pie-container">
-            <h2 id="pie-title">
-                Komposisi Nutrisi dalam Berbagai Jenis Makanan
-            </h2>
-            <svg id="pie-chart"></svg>
+            <div class="description">
+                <p>Gambar di samping menampilkan visualisasi kandungan nutrisi berbagai makanan khas Indonesia, dibagi
+                    ke dalam empat kategori: tinggi protein, tinggi lemak, tinggi karbohidrat, dan rendah kalori.
+                    Pengelompokan ini mengikuti standar di mana makanan diklasifikasikan berdasarkan jumlah nutrisi
+                    tertentu per 100 gram sajian. Secara khusus, makanan dikategorikan sebagai tinggi protein (6-10
+                    gram), tinggi lemak (lebih dari 17,5 gram), tinggi karbohidrat (lebih dari 22,5 gram), atau rendah
+                    kalori (20-50 kalori). Dari grafik pie, terlihat bahwa persentase makanan dalam setiap kategori
+                    tidak jauh berbeda, meskipun makanan tinggi protein memiliki persentase paling rendah. Secara umum,
+                    makanan khas Indonesia cenderung memiliki kandungan karbohidrat yang tinggi.</p>
+                <div id="reference">
+                    <a
+                        href="https://www.rri.co.id/lain-lain/515434/memahami-label-nutrisi-pada-produk-kemasan#:~:text=Kadar%20karbohidrat%20dalam%20suatu%20produk,per%20100%20gram%20takaran%20saji">RRI</a>
+                    <a href="https://www.intake.health/post/macronutrient-intake-america-averages-interactive-charts">Intake
+                        Health</a>
+                    <a href="https://www.verywellhealth.com/macronutrients-7965665">Well Health</a>
+                    <a href="https://www.mdpi.com/2072-6643/15/17/3792">MDPI</a>
+                </div>
+
+            </div>
+            <div>
+                <svg id="pie-chart"></svg>
+            </div>
         </div>
     </div>
-  
+
 
 
     <!-- D3 bundle -->
