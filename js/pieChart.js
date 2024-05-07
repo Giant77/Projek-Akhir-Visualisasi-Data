@@ -1,5 +1,5 @@
 // Menggunakan data dari file CSV eksternal
-d3.csv('../data/nutrition.csv').then(function (data) {
+d3.csv("./data/nutrition.csv").then(function (data) {
     try {
         // Inisialisasi penghitung untuk setiap kategori
         const counts = {
@@ -43,17 +43,17 @@ d3.csv('../data/nutrition.csv').then(function (data) {
         };
 
         const div = d3.select('body');
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        const radius = Math.min(height, width) / 2-60;
+        const paddingRight = 100;
+        const width = (window.innerWidth / 2.3) + paddingRight;
+        const height = window.innerHeight / 2.3;
+        const radius = Math.min(height, width) / 1.5;
         const colorScale = d3.scaleOrdinal(d3.schemeSet2);
-        const pieChartHeightPadding = 100;
-
+        const pieChartHeightPadding = 200;
         const svg = div.select("#pie-chart")
             .attr('height', height + pieChartHeightPadding)
             .attr('width', width)
             .append('g')
-            .attr('transform', `translate(${width / 2}, ${(height + pieChartHeightPadding) / 2})`);
+            .attr('transform', `translate(${width / 3}, ${(height + pieChartHeightPadding) / 2})`);
 
         const pie = d3.pie().value(d => d).sort(null);
 
